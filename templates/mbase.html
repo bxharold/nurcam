@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="Cache-Control" content="no-cache" dontbother="Y">
+<title>nurcam   mbase.html</title>
+<script src="static/jquery-3.7.1.min.js"></script>
+<script src="static/getHeat.js"></script> <!-- I used defer when inline...? -->
+</head>
+<body>
+<table width=60%> <TR>
+<TH> <a href="http://mc24b.local:5000/"> Home </a>
+<TH> <a href="http://mc24b.local:5000/pig"> Pig </a>
+<TH> <a href="http://mc24b.local:5000/lizard"> Lizard </a>
+<TH> <a href="http://mc24b.local:5000/cam"> Cam </a>
+<TH> <a href="http://mc24b.local:5000/answers"> Ajax </a>
+<TH> <a href="http://mc24b.local:8000/stream.mjpg"> Raw Stream </a>
+<Td align=right> <em> mbase.html </em>
+</table>
+    <H3>Hello {{person}} from mc24b</H3>
+
+{% block content %}
+<em><font color=green>Click "Cam" to see the video stream </font></em> <P>
+<HR>
+<img src="static/Barbara_GC_May2025-4.jpg" width=510 height=384/> <BR> Barbara
+<HR>
+{% endblock %}
+
+<HR>
+<xform id="myForm" action="/irrelevant" method="GET">
+<xxxform>
+   <!--  this form's action is irrelevant since there's no submit.  -->
+   <!--  getHeat() invokes the /heat route and then updates the DOM -->
+   <!--  In fact, the form itself is irrelevant                     -->
+  <TABLE border=0>    
+    <TR> <TD><input value="  Status  " type="button" onclick="getHeat()"></TD>
+      <Td align=right>Temp:
+      <input type=text id="temp" name="temp" value="-" size=5></Td>
+      <TH align=right>Time Stamp:
+      <input type=text id="timestamp" name="timestamp" value="-" size=9></TH>
+      <TH align=right>Server:
+      <input type=text id="hostname" name="hostname" value="-" size=15></TH>
+    <TR> <td></td>
+      <TH align=right>Util: 
+      <input type=text id="util" name="util" value="-" size=5></TH>
+      <TH align=right>Throttle: 
+       <input type=text id="throttle" name="throttle" value="-" size=9></TH>
+      <TH align=right>IP: 
+      <input type=text id="ip" name="ip" value="-" size=15></TH>
+  </TABLE>
+</xxxform>
+
+<HR>
+</body>
+</html>
+
+

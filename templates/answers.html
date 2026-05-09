@@ -1,0 +1,37 @@
+{%extends "mbase.html" %}
+                              file:   answers.html   <BR>
+{% block content %}
+    {% if person %}
+      <h2>Hello {{ person }}!</h2>
+    {% else %}
+      <h2>Hello, World!</h2>
+    {% endif %}
+    <H3> mc24b route /answers...  ajax/jQuery API approach. </H3>
+
+<xxxform id="myFormA" action="/irrelevant" method="GET">
+<form>
+   <!--  this form's action is irrelevant since there's no submit.  -->
+   <!--  In fact, the form itself is irrelevant                     -->
+   <!--  the JS function getAnswer() is in getHeat.js, which invokes 
+         the /answer route with the form values, invokes the /answer API, 
+         and then updates the DOM with the API's return values. 
+     -->
+   getAnswer: <label for="a"> a= </label>
+   <input type=text id="a" name="a" value="6" size=4>
+   <label for="b"> <b>x</b> b=</label>
+   <input type=text id="b" name="b" size=4 value="7">
+    <input value="Multiply" type="button" onclick="getAnswer()">
+    <b> </b> <input type=text id="c" name="c" size=6 disabled>
+</form>
+
+<pre>
+
+util_functions.py can run as a standalone flask app, useful for testing. 
+it's easy to add a decorator to invoke a function in a route
+e.g., http://mc24b.local:5003/cpu_temp
+      http://mc24b.local:5003/hello/CatFeeder
+      http://mc24b.local:5003/jsontests/dict
+</pre>
+{% endblock %}
+
+

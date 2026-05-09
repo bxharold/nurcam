@@ -1,0 +1,29 @@
+{%extends "mbase.html" %}
+{% block content %}
+
+<div id="msg"> {{ msg }} </div>
+<div id="message"> {{ message }} </div>
+
+<button type="button" onClick='javascript:window.location.href="/refresh"'> page refresh </button>
+<button type="button" onClick='javascript:window.location.href="/startstream"'> start stream </button>
+<button type="button" onClick='javascript:window.location.href="/takepicture"'> take picture </button>
+<button type="button" onClick='javascript:window.location.href="/killstream"'> kill stream </button>
+<button type="button" onClick='javascript:window.location.href="/movie"'> 5 sec movie </button>
+this is nucam.html<BR>
+<iframe src="http://mc24b.local:8000/stream.mjpg" width=640 height=480 ></iframe>  
+<P>
+<!-- <UL>
+ <LI> - buttons: "Take Picture", "start stream", "kill stream", "movie"
+ <LI> - button to display temperature and CPU utilization 
+ <LI> - class camstream with methods start, kill, take picture, movie
+ <LI> - vid 640x480.  pic 1024x768 (.7M), max 1920x1080 (1.6M)
+ <LI> - vid stream capture is choppy on mc24b. Maybe because pi3? Slow card?
+ <LI> o factor out dup header code ("jinja template inheritance")
+ <LI> o put this onto github
+ <LI> o use picamera2 for bookworm(12)
+ <LI> o monitor temperature in a thread/timer (planetA?)
+ </UL>
+-->
+<!-- holy shit ... I did this:  1473  rm cp bowser.py _1_bowser.py -->
+{% endblock %}
+

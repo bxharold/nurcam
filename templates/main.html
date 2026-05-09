@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="Cache-Control" content="no-cache" dontbother="Y">
+<title>nurcam   main.html</title>
+
+<script src="static/jquery-3.7.1.min.js"></script>
+<script src="static/getHeat.js"></script> <!-- I used defer when inline...? -->
+<xscript src="https://code.jquery.com/jquery-3.7.1.js"></xscript>
+<xscript type="text/javascript" defer>  <!-- defer was used for inline js -->
+<!--
+// By putting static/getHeat.js inline, ctrl-R refreshes the script  without needing to clear the cache 
+// But I found that I can do shift-cmd-R
+    function NOT_getAnswer(){
+       $.ajax({
+         type: "POST",
+         headers: {
+            'Content-Type': 'application/json' //Important: Send JSON data
+         },
+         url: "http://mc24b.local:5000/answer",
+         data: JSON.stringify({
+            'a': $('#a').val(),
+            'b': $('#b').val()
+         }),
+         success: (function (data) {
+           console.log("getAnswer success:",data);
+           $("#c").val(data["c"]);
+         }), 
+         error: (function (error) {
+           alert("error", error)
+           console.log(error);
+         })
+       });
+    };
+
+    function NOT_getHeat(){
+       $.ajax({
+         type: "POST",
+         url: "http://mc24b.local:5000/heat",
+         contentType: 'application/json'
+       }).done(function (data) {
+         console.log(data);
+         $("#timestamp").val(data["timestamp"]);
+         $("#util").val(data["util"]);
+         $("#temp").val(data["temp"]);
+         $("#throttle").val(data["throttle"]);
+         $("#ip").val(data["ip"]);
+         $("#hostname").val(data["hostname"]);
+       }).fail(function (error) {
+         console.log(error);
+       });
+    }
+</xscript>
+-->
+</head>
+
+<body>
+<table width=60%> <TR>
+<TH> <a href="http://mc24b.local:5000/"> Home </a>
+<TH> <a href="http://mc24b.local:5000/pig"> Pig </a>
+<TH> <a href="http://mc24b.local:8000/stream.mjpg"> Stream </a>
+<TH> <a href="http://mc24b.local:5000/cam"> Cam </a>
+<Td align=right> <em> (this is main.html started by bowser.py)</em>
+</table>
+<BR>
+<div id="status">
+
+{% block content %}
+<em><font color=green>Click "Cam" to see the video stream </font></em> <P>
+{% endblock %}
+
+<form id="myForm" action="/answer" method="GET">
+<TABLE border=0>
+  <TR>
+    <TD><input value="Status" type="button" onclick="getHeat()"></TD>
+      <Td align=right>Temp:
+      <input type=text id="temp" name="temp" value="-" size=5></Td>
+      <TH align=right>Time Stamp:
+      <input type=text id="timestamp" name="timestamp" value="-" size=9></TH>
+      <TH align=right>Server:
+      <input type=text id="hostname" name="hostname" value="-" size=15></TH>
+  <TR> <td></td>
+      <TH align=right>Util: 
+      <input type=text id="util" name="util" value="-" size=5></TH>
+      <TH align=right>Throttle: 
+       <input type=text id="throttle" name="throttle" value="-" size=9></TH>
+      <TH align=right>IP: 
+      <input type=text id="ip" name="ip" value="-" size=15></TH>
+</TABLE>
+
+<HR>
+<img src="static/Barbara_GC_May2025-4.jpg" width=1020 height=768/> <BR> imag1075s.jpg
+<HR>
+</form>
+<form id="myFormA" action="/answer" method="GET">
+getAnswer: <label for="a"> a= </label>
+<input type=text id="a" name="a" value="6" size=4> 
+<label for="b"> <b>x</b> b=</label>
+<input type=text id="b" name="b" size=4 value="7"> 
+ <input value="Multiply" type="button" onclick="getAnswer()">
+<b> </b> <input type=text id="c" name="c" size=6 disabled>
+</form>
+<HR>
+<BR> <a href="http://mc24b.local:5000/pig">mc24b.local:5000/pig // render_template("pignew.html")</a>
+<BR> <a href="http://mc24b.local:8000/stream.mjpg">mc24b.local:8000/stream.mjpg </a>
+<BR> <a href="http://mc24b.local:5000/cam">mc24b.local:5000/cam // render_template("nucam.html") </a>
+</body>
+</html>
+
+

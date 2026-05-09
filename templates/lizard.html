@@ -1,0 +1,11 @@
+{%extends "mbase.html" %}
+{% block content %}
+    <P> <img src="/static/jeanpaulVlizard-672x380.jpg">
+    {% if person %}
+      <h2>Hello {{ person }}!</h2>
+    {% else %}
+      <h2> . . . </h2>
+    {% endif %}
+{% endblock %}
+
+
